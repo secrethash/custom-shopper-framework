@@ -36,6 +36,9 @@ class Order extends Model
         'payment_method_id',
         'price_amount',
         'user_id',
+        'tax_total',
+        'amounts',
+        'is_paid',
     ];
 
     /**
