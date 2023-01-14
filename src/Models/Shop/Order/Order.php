@@ -128,6 +128,11 @@ class Order extends Model
         return $this->status === OrderStatus::COMPLETED;
     }
 
+    public function isShipped(): bool
+    {
+        return $this->status === OrderStatus::SHIPPED;
+    }
+
     public function fullPriceWithShipping(): int
     {
         return $this->total() + $this->shipping_total;
