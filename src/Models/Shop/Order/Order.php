@@ -130,8 +130,12 @@ class Order extends Model
 
     public function isShipped(): bool
     {
-        return $this->status === OrderStatus::SHIPPED
-            OR $this->status === OrderStatus::DELIVERY;
+        return $this->status === OrderStatus::SHIPPED;
+    }
+
+    public function isOutForDelivery(): bool
+    {
+        return $this->status === OrderStatus::DELIVERY;
     }
 
     public function fullPriceWithShipping(): int
