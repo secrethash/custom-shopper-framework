@@ -79,7 +79,7 @@ class Order extends Model
             OrderStatus::PENDING => 'border-yellow-200 bg-yellow-100 text-yellow-800',
             OrderStatus::REGISTER => 'border-blue-200 bg-blue-100 text-blue-800',
             OrderStatus::SHIPPED => 'border-green-200 bg-green-100 text-green-800',
-            OrderStatus::DELIVERY => 'border-green-800 bg-green-800 text-white-800',
+            OrderStatus::DELIVERY => 'border-green-700 bg-green-700 text-white-800',
             OrderStatus::CANCELLED => 'border-pink-200 bg-pink-100 text-pink-800',
             OrderStatus::COMPLETED => 'border-purple-200 bg-purple-100 text-purple-800',
         };
@@ -130,7 +130,8 @@ class Order extends Model
 
     public function isShipped(): bool
     {
-        return $this->status === OrderStatus::SHIPPED;
+        return $this->status === OrderStatus::SHIPPED
+            OR $this->status === OrderStatus::DELIVERY;
     }
 
     public function fullPriceWithShipping(): int
