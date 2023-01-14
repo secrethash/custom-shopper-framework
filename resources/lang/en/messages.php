@@ -22,6 +22,7 @@ return [
                            your store and configure it exactly as you want. You can make <span>integrations</span> to go faster if you want.',
         'cards' => [
             'doc_title' => 'Documentation',
+            'admin_backend_title' => 'Admin Panel',
             'doc_description' => 'Get to know Laravel Shopper by understanding its capabilities the right way, whether you are new to the framework or have already worked on it. This documentation is made for you.',
             'doc_link' => 'Visit the documentation',
 

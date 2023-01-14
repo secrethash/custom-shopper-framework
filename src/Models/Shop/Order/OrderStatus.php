@@ -6,9 +6,13 @@ class OrderStatus
 {
     public const PENDING = 'pending';
 
-    public const REGISTER = 'register';
+    public const REGISTER = 'confirmed';
 
-    public const PAID = 'paid';
+    // public const PAID = 'paid';
+
+    public const SHIPPED = 'shipped';
+
+    public const DELIVERY = 'out-for-delivery';
 
     public const COMPLETED = 'completed';
 
@@ -18,10 +22,12 @@ class OrderStatus
     {
         return [
             self::PENDING => __('Pending'),
-            self::REGISTER => __('Registered'),
+            self::REGISTER => __('Confirmed'),
             self::COMPLETED => __('Completed'),
+            self::SHIPPED => __('Shipped'),
+            self::DELIVERY => __('Out for Delivery'),
             self::CANCELLED => __('Cancelled'),
-            self::PAID => __('Paid'),
+            // self::PAID => __('Paid'),
         ];
     }
 }

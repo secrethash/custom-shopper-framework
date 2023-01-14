@@ -49,6 +49,11 @@ class Order extends Model
         'formatted_status',
     ];
 
+    protected $casts = [
+        'amounts' => 'array',
+        'is_paid' => 'bool',
+    ];
+
     public function __construct(array $attributes = [])
     {
         if (! isset($attributes['status'])) {
@@ -73,7 +78,8 @@ class Order extends Model
         return match ($this->status) {
             OrderStatus::PENDING => 'border-yellow-200 bg-yellow-100 text-yellow-800',
             OrderStatus::REGISTER => 'border-blue-200 bg-blue-100 text-blue-800',
-            OrderStatus::PAID => 'border-green-200 bg-green-100 text-green-800',
+            OrderStatus::SHIPPED => 'border-green-200 bg-green-100 text-green-800',
+            OrderStatus::DELIVERY => 'border-green-800 bg-green-800 text-white-800',
             OrderStatus::CANCELLED => 'border-pink-200 bg-pink-100 text-pink-800',
             OrderStatus::COMPLETED => 'border-purple-200 bg-purple-100 text-purple-800',
         };
@@ -91,7 +97,7 @@ class Order extends Model
 
     public function canBeCancelled(): bool
     {
-        if ($this->status === OrderStatus::COMPLETED || $this->status === OrderStatus::PAID) {
+        if ($this->status === OrderStatus::COMPLETED || $this->is_paid) {
             return false;
         }
 
@@ -115,11 +121,6 @@ class Order extends Model
     public function isRegister(): bool
     {
         return $this->status === OrderStatus::REGISTER;
-    }
-
-    public function isPaid(): bool
-    {
-        return $this->status === OrderStatus::PAID;
     }
 
     public function isCompleted(): bool
@@ -168,5 +169,44 @@ class Order extends Model
             ),
             true
         );
+    }
+    public function markAsPaid(): bool
+    {
+        return $this->update([
+            'is_paid' => true,
+        ]);
+    }
+
+    public function markAsRegistered(): bool
+    {
+        return $this->update([
+            'status' => OrderStatus::REGISTER,
+        ]);
+    }
+
+    public function markAsShipped(): bool
+    {
+        return $this->update([
+            'status' => OrderStatus::SHIPPED,
+        ]);
+    }
+
+    public function markAsOutForDelivery(): bool
+    {
+        return $this->update([
+            'status' => OrderStatus::DELIVERY,
+        ]);
+    }
+
+    public function markAsCompleted(): bool
+    {
+        return $this->update([
+            'status' => OrderStatus::COMPLETED,
+        ]);
+    }
+
+    public function isPaid(): bool
+    {
+        return $this->is_paid;
     }
 }
