@@ -54,7 +54,7 @@
 
         @if(config('shopper.system.admin_backend') && filled(config('shopper.system.admin_backend')))
             <a
-                href="{{config('shopper.system.admin_backend')}}"
+                href="{{route(config('shopper.system.admin_backend'))}}"
                 target="_blank"
                 class="block p-2 text-base leading-6 font-medium rounded-md text-white hover:bg-primary-700 focus:outline-none focus:bg-primary-900 transition ease-in-out duration-150"
                 x-tooltip.raw="{{ __('shopper::messages.dashboard.cards.admin_backend_title') }}"

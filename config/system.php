@@ -201,6 +201,6 @@ return [
 
     'barcode_type' => 'C128',
 
-    'admin_backend' => route('filament.pages.dashboard'),
+    'admin_backend' => 'filament.pages.dashboard',
 
 ];
