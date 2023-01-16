@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Shopper\Framework\Models\System\Country;
+use Shopper\Framework\Models\User\CountryState;
 
 class Address extends Model
 {
@@ -33,6 +34,7 @@ class Address extends Model
         'type',
         'user_id',
         'country_id',
+        'country_state_id',
     ];
 
     /**
@@ -60,6 +62,7 @@ class Address extends Model
      */
     protected $with = [
         'country',
+        'state',
     ];
 
     /**
@@ -70,14 +73,20 @@ class Address extends Model
         return shopper_table('user_addresses');
     }
 
+    public function state(): BelongsTo
+    {
+        return $this->belongsTo(CountryState::class, 'country_state_id');
+    }
+
     /**
      * Return Address Full Name.
      */
     public function getFullNameAttribute(): string
     {
-        return $this->last_name
+        $fullname = $this->last_name
             ? $this->first_name . ' ' . $this->last_name
             : $this->first_name;
+        return $fullname ?? '';
     }
 
     /**
