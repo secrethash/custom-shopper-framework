@@ -197,6 +197,12 @@
                             </div>
 
                             <div class="col-span-6">
+                                <x-shopper::forms.group label="Company Registration Number (TRN)" for="shop_trn" isRequired :error="$errors->first('shop_trn')">
+                                    <x-shopper::forms.input wire:model.defer="shop_trn" id="shop_trn" type="text" autocomplete="off" placeholder="7726627267717" />
+                                </x-shopper::forms.group>
+                            </div>
+
+                            <div class="col-span-6">
                                 <x-shopper::forms.group label="About" for="about">
                                     <livewire:shopper-forms.trix :value="$shop_about" />
                                 </x-shopper::forms.group>

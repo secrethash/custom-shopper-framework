@@ -50,6 +50,7 @@ class Setting extends Model
         return [
             'shop_name' => __('Store name'),
             'shop_legal_name' => __('Store Legal name'),
+            'shop_trn' => __('Shop TRN'),
             'shop_email' => __('Store email'),
             'shop_logo' => __('Store Logo'),
             'shop_cover' => __('Store Cover Image'),

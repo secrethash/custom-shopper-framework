@@ -25,6 +25,8 @@ class General extends Component
 
     public string $shop_city;
 
+    public ?string $shop_trn = null;
+
     public ?string $shop_legal_name = null;
 
     public ?string $shop_phone_number = null;
@@ -71,6 +73,7 @@ class General extends Component
             'shop_facebook_link',
             'shop_instagram_link',
             'shop_twitter_link',
+            'shop_trn',
         ])->select('value', 'key')
             ->get()
             ->toArray();
@@ -103,6 +106,7 @@ class General extends Component
             'shop_facebook_link',
             'shop_instagram_link',
             'shop_twitter_link',
+            'shop_trn',
         ];
 
         foreach ($keys as $key) {
@@ -145,6 +149,7 @@ class General extends Component
             'shop_street_address' => 'required|string',
             'shop_zipcode' => 'required',
             'shop_city' => 'required',
+            'shop_trn' => 'required',
         ];
     }
 
@@ -168,6 +173,7 @@ class General extends Component
 
     public function render()
     {
+        // livewire.console.settings.general
         return view('shopper::livewire.settings.general', [
             'countries' => Cache::rememberForever('countries', fn () => Country::query()->orderBy('name')->get()),
             'currencies' => Cache::rememberForever('currencies', fn () => Currency::all()),
