@@ -8,8 +8,6 @@ class OrderStatus
 
     public const REGISTER = 'confirmed';
 
-    // public const PAID = 'paid';
-
     public const SHIPPED = 'shipped';
 
     public const DELIVERY = 'out-for-delivery';
@@ -17,6 +15,8 @@ class OrderStatus
     public const COMPLETED = 'completed';
 
     public const CANCELLED = 'cancelled';
+
+    public const FAILED = 'failed';
 
     public static function values(): array
     {
@@ -27,7 +27,7 @@ class OrderStatus
             self::SHIPPED => __('Shipped'),
             self::DELIVERY => __('Out for Delivery'),
             self::CANCELLED => __('Cancelled'),
-            // self::PAID => __('Paid'),
+            self::FAILED => __('Failed'),
         ];
     }
 }
