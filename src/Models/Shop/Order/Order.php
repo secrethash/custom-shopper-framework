@@ -84,6 +84,7 @@ class Order extends Model
             OrderStatus::SHIPPED => 'border-green-200 bg-green-100 text-green-800',
             OrderStatus::DELIVERY => 'border-green-700 bg-green-700 text-white-800',
             OrderStatus::CANCELLED => 'border-pink-200 bg-pink-100 text-pink-800',
+            OrderStatus::FAILED => 'border-pink-200 bg-pink-100 text-pink-800',
             OrderStatus::COMPLETED => 'border-purple-200 bg-purple-100 text-purple-800',
         };
     }
